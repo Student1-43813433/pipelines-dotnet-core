@@ -29,7 +29,7 @@ jobs:
     - name: Publish
       run: dotnet publish -c Release -o website
     - name: Upload artifact for deployment job
-      uses: actions/upload-artifact@v3.2.1-node20
+      uses: actions/upload-artifact@v4
       with:
         name: webapp
         path: website/**
@@ -39,12 +39,12 @@ jobs:
     needs: build 
     steps:
     - name: Download a Build Artifact
-      uses: actions/download-artifact@v3.2.1-node20
+      uses: actions/download-artifact@v4
       with:
         name: webapp
         path: webapp
     - name: Deploy web app
-      uses: azure/webapps-deploy@v2
+      uses: azure/webapps-deploy@v4
       with:
         app-name: GitHubApp-43813433
         publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE  }}
